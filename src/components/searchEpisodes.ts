@@ -1,5 +1,4 @@
 import { IEpisode } from "../utils/IEpisode";
-import episodes from "../tvShowsData.json";
 
 export function textInputFilter(oneEpisode: IEpisode, text: string): boolean {
   const searchEpisodeName: string = oneEpisode.name;
