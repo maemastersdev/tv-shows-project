@@ -1,7 +1,10 @@
 import { IEpisode } from "../utils/IEpisode";
 import episodes from "../tvShowsData.json";
+import { textInputFilter } from "./searchEpisodes";
+import { useState } from "react";
 
 export function ListAllEpisodes(): JSX.Element {
+
 
     function createEpisodeCode(oneEpisode: IEpisode) {
         const seasonCode = oneEpisode.season.toString().padStart(2, '0');
@@ -20,13 +23,22 @@ export function ListAllEpisodes(): JSX.Element {
         );
     }
 
-    const ListedAllEpisodes = episodes.map(listAnEpisode);
+    const [text, setText] = useState("");
+    const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
+    textInputFilter(oneEpisode, text));
+
+    const ListedAllEpisodes = searchedEpisodeData.map(listAnEpisode);
 
     return (
         <>
-        <div>
-            {ListedAllEpisodes}
-        </div>
+        <input
+          className= "searchBar"
+          value={text}
+          onChange={(event) => {
+            setText(event.target.value);
+          }}/>
+        
+        {ListedAllEpisodes}
         </>
     );
 }
