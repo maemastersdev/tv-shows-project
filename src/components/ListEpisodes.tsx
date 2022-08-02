@@ -1,9 +1,30 @@
 import { IEpisode } from "../utils/IEpisode";
-import episodes from "../tvShowsData.json";
 import { textInputFilter } from "./searchEpisodes";
 import { useState } from "react";
+import axios from "axios";
+import { useEffect } from "react";
 
 export function ListAllEpisodes(): JSX.Element {
+  
+  function FetchData(){
+
+    const [episodes, setEpisodes] = useState<IEpisode[]>([])
+
+     useEffect(() => {
+        axios
+            .get("https://api.tvmaze.com/shows/82/episodes")
+            .then(res => {
+                setEpisodes(res.data) 
+            }) 
+            .catch(err => {
+                console.log(err)
+            })
+              
+    })
+  return episodes;
+  }
+
+  const episodes = FetchData();
   
   const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
