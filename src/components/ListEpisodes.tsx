@@ -3,6 +3,7 @@ import { textInputFilter } from "./searchEpisodes";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
+import removeThePs from "../utils/removeThePs";
 
 export function ListAllEpisodes(): JSX.Element {
   
@@ -25,7 +26,7 @@ export function ListAllEpisodes(): JSX.Element {
   }
 
   const episodes = FetchData();
-  
+
   const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
     textInputFilter(oneEpisode, text)
@@ -54,7 +55,7 @@ function ListAnEpisode(oneEpisode: IEpisode) {
       <h1>{oneEpisode.name}</h1>
       <h2>{createEpisodeCode(oneEpisode)}</h2>
       {oneEpisode.image !== null&& <img src={oneEpisode.image.medium} />}
-      <p>{oneEpisode.summary}</p>
+      <p>{removeThePs(oneEpisode)}</p>
     </div>
   );
 }
