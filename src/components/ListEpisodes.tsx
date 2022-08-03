@@ -5,24 +5,58 @@ import axios from "axios";
 import { useEffect } from "react";
 import removeThePs from "../utils/removeThePs";
 
+interface IShow {
+  title: string;
+  ID: string;
+}
+
+export function ShowSelector(): JSX.Element {
+  const [selectorPlaceholder, setSelectorPlaceholder] =
+    useState("Select a show");
+  const [showID, setShowID] = useState<string>("82");
+
+  const arrayOfShows: IShow[] = [
+    { title: "Game of Thrones", ID: "82" },
+    { title: "The Simpsons", ID: "83" },
+  ];
+
+  function handleSelectShow(showName: string) {
+    const selectedShow = arrayOfShows.find((show) => show.title === showName);
+    if (selectedShow) {
+      setShowID(selectedShow.ID);
+      console.log(showID);
+    }
+  }
+
+  return (
+    <div>
+      <select
+        placeholder={selectorPlaceholder}
+        onChange={(e) => handleSelectShow(e.target.value)}
+      >
+        {arrayOfShows.map((oneShow) => (
+          <option key={oneShow.ID}> {oneShow.title} </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
 export function ListAllEpisodes(): JSX.Element {
-  
-  function FetchData(){
+  function FetchData() {
+    const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
-    const [episodes, setEpisodes] = useState<IEpisode[]>([])
-
-     useEffect(() => {
-        axios
-            .get("https://api.tvmaze.com/shows/82/episodes")
-            .then(res => {
-                setEpisodes(res.data) 
-            }) 
-            .catch(err => {
-                console.log(err)
-            })
-              
-    })
-  return episodes;
+    useEffect(() => {
+      axios
+        .get(`https://api.tvmaze.com/shows/82/episodes`)
+        .then((res) => {
+          setEpisodes(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+    return episodes;
   }
 
   const episodes = FetchData();
@@ -36,6 +70,8 @@ export function ListAllEpisodes(): JSX.Element {
 
   return (
     <>
+      <ShowSelector />
+      <hr></hr>
       <input
         className="searchBar"
         value={text}
@@ -54,7 +90,7 @@ function ListAnEpisode(oneEpisode: IEpisode) {
     <div className="episodeCard">
       <h1>{oneEpisode.name}</h1>
       <h2>{createEpisodeCode(oneEpisode)}</h2>
-      {oneEpisode.image !== null&& <img src={oneEpisode.image.medium} />}
+      {oneEpisode.image !== null && <img src={oneEpisode.image.medium} />}
       <p>{removeThePs(oneEpisode)}</p>
     </div>
   );
