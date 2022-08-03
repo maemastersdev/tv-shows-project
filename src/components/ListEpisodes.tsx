@@ -32,7 +32,7 @@ export function ListAllEpisodes(): JSX.Element {
 
   useEffect(() => {
     axios
-      .get(`https://api.tvmaze.com/shows/82/episodes`)
+      .get(`https://api.tvmaze.com/shows/${showID}/episodes`)
       .then((res) => {
         setEpisodes(res.data);
       })
@@ -41,8 +41,8 @@ export function ListAllEpisodes(): JSX.Element {
       });
       // [] to prevent constant re-render (( tells useEffect to call function ONLY after FIRST render ))
       // with no second arg, function will be called after EVERY render of the component 
-      // [potato, turnip] function will be called after first render, AND after either potato/turnip change 
-  },[]);
+      // [showID] function will be called after first render, AND after either showID change 
+  },[showID]);
 
   const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
@@ -54,6 +54,7 @@ export function ListAllEpisodes(): JSX.Element {
   return (
     <>
       <div>
+        <p>selected show id is: {showID}</p>
         <select
           placeholder={selectorPlaceholder}
           onChange={(e) => handleSelectShow(e.target.value)}
