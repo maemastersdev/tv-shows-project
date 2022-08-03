@@ -9,7 +9,7 @@ export interface IEpisode {
   airtime: string;
   airstamp: string;
   runtime: number;
-  rating: { average: null | number } ;
+  rating: { average: null | number };
   image: null | {
     medium: string;
     original: string;
