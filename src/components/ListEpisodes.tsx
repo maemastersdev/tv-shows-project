@@ -28,23 +28,21 @@ export function ListAllEpisodes(): JSX.Element {
     }
   }
 
-  function FetchData() {
-    const [episodes, setEpisodes] = useState<IEpisode[]>([]);
+  const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
-    useEffect(() => {
-      axios
-        .get(`https://api.tvmaze.com/shows/82/episodes`)
-        .then((res) => {
-          setEpisodes(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
-    return episodes;
-  }
-
-  const episodes = FetchData();
+  useEffect(() => {
+    axios
+      .get(`https://api.tvmaze.com/shows/82/episodes`)
+      .then((res) => {
+        setEpisodes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      // [] to prevent constant re-render (( tells useEffect to call function ONLY after FIRST render ))
+      // with no second arg, function will be called after EVERY render of the component 
+      // [potato, turnip] function will be called after first render, AND after either potato/turnip change 
+  },[]);
 
   const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
