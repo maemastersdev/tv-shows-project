@@ -10,7 +10,7 @@ interface IShow {
   ID: string;
 }
 
-export function ShowSelector(): JSX.Element {
+export function ListAllEpisodes(): JSX.Element {
   const [selectorPlaceholder, setSelectorPlaceholder] =
     useState("Select a show");
   const [showID, setShowID] = useState<string>("82");
@@ -28,21 +28,6 @@ export function ShowSelector(): JSX.Element {
     }
   }
 
-  return (
-    <div>
-      <select
-        placeholder={selectorPlaceholder}
-        onChange={(e) => handleSelectShow(e.target.value)}
-      >
-        {arrayOfShows.map((oneShow) => (
-          <option key={oneShow.ID}> {oneShow.title} </option>
-        ))}
-      </select>
-    </div>
-  );
-}
-
-export function ListAllEpisodes(): JSX.Element {
   function FetchData() {
     const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
@@ -70,7 +55,16 @@ export function ListAllEpisodes(): JSX.Element {
 
   return (
     <>
-      <ShowSelector />
+      <div>
+        <select
+          placeholder={selectorPlaceholder}
+          onChange={(e) => handleSelectShow(e.target.value)}
+        >
+          {arrayOfShows.map((oneShow) => (
+            <option key={oneShow.ID}> {oneShow.title} </option>
+          ))}
+        </select>
+      </div>
       <hr></hr>
       <input
         className="searchBar"
