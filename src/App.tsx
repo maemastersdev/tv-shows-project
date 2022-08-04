@@ -1,11 +1,12 @@
 import ListAllEpisodes from "./components/ListAllEpisodes";
-import shows from "./showsData.json";
+import { ListAllShows } from "./components/ListAllShows";
 
 function App(): JSX.Element {
   return (
     <>
       <h1> TV SHOW </h1>
       <ListAllEpisodes />
+      <ListAllShows />
     </>
   );
 }

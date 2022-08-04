@@ -6,9 +6,10 @@ export interface IShow {
   language: string;
   genres: string[];
   status: string;
-  runtime: number;
+  runtime: null | number;
   averageRuntime: number;
   premiered: string;
+  ended?: null | string;
   officialSite: string;
   schedule: {
     time: string;
@@ -16,7 +17,7 @@ export interface IShow {
   },
   rating: { average: null | number };
   weight: number;
-  network: {
+  network: null | {
     id: number;
     name: string;
     country: {
@@ -26,10 +27,10 @@ export interface IShow {
     },
     officialSite:  null | string;
   },
-  webchannel: {
+  webchannel: null | {
     id: number;
     name: string;
-    country: {
+    country: null | {
       name: string;
       code: string;
       timezone: string;
@@ -40,7 +41,7 @@ export interface IShow {
   externals: {
     tvrage: number;
     thetvdb: number;
-    imdb: string;
+    imdb: null | string;
   },
   image: {
     medium: string;
@@ -48,7 +49,7 @@ export interface IShow {
   },
   summary: string;
   updated: number;
-  links: {
+  _links: {
     self: {
       href: string;
     },
