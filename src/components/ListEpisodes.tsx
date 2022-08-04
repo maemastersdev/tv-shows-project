@@ -1,14 +1,10 @@
 import { IEpisode } from "../utils/IEpisode";
+import { IShow } from "../utils/IShow";
 import { textInputFilter } from "./searchEpisodes";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import removeThePs from "../utils/removeThePs";
-
-interface IShow {
-  title: string;
-  ID: string;
-}
 
 export function ListAllEpisodes(): JSX.Element {
   const [selectorPlaceholder, setSelectorPlaceholder] =
