@@ -5,27 +5,44 @@ import axios from "axios";
 import { useEffect } from "react";
 import removeThePs from "../utils/removeThePs";
 
+interface IShow {
+  title: string;
+  ID: string;
+}
+
 export function ListAllEpisodes(): JSX.Element {
-  
-  function FetchData(){
+  const [selectorPlaceholder, setSelectorPlaceholder] =
+    useState("Select a show");
+  const [showID, setShowID] = useState<string>("82");
 
-    const [episodes, setEpisodes] = useState<IEpisode[]>([])
+  const arrayOfShows: IShow[] = [
+    { title: "Game of Thrones", ID: "82" },
+    { title: "The Simpsons", ID: "83" },
+  ];
 
-     useEffect(() => {
-        axios
-            .get("https://api.tvmaze.com/shows/82/episodes")
-            .then(res => {
-                setEpisodes(res.data) 
-            }) 
-            .catch(err => {
-                console.log(err)
-            })
-              
-    })
-  return episodes;
+  function handleSelectShow(showName: string) {
+    const selectedShow = arrayOfShows.find((show) => show.title === showName);
+    if (selectedShow) {
+      setShowID(selectedShow.ID);
+      console.log(showID);
+    }
   }
 
-  const episodes = FetchData();
+  const [episodes, setEpisodes] = useState<IEpisode[]>([]);
+
+  useEffect(() => {
+    axios
+      .get(`https://api.tvmaze.com/shows/${showID}/episodes`)
+      .then((res) => {
+        setEpisodes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      // [] to prevent constant re-render (( tells useEffect to call function ONLY after FIRST render ))
+      // with no second arg, function will be called after EVERY render of the component 
+      // [showID] function will be called after first render, AND after either showID change 
+  },[showID]);
 
   const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
@@ -36,6 +53,18 @@ export function ListAllEpisodes(): JSX.Element {
 
   return (
     <>
+      <div>
+        <p>selected show id is: {showID}</p>
+        <select
+          placeholder={selectorPlaceholder}
+          onChange={(e) => handleSelectShow(e.target.value)}
+        >
+          {arrayOfShows.map((oneShow) => (
+            <option key={oneShow.ID}> {oneShow.title} </option>
+          ))}
+        </select>
+      </div>
+      <hr></hr>
       <input
         className="searchBar"
         value={text}
@@ -54,7 +83,7 @@ function ListAnEpisode(oneEpisode: IEpisode) {
     <div className="episodeCard">
       <h1>{oneEpisode.name}</h1>
       <h2>{createEpisodeCode(oneEpisode)}</h2>
-      {oneEpisode.image !== null&& <img src={oneEpisode.image.medium} />}
+      {oneEpisode.image !== null && <img src={oneEpisode.image.medium} />}
       <p>{removeThePs(oneEpisode)}</p>
     </div>
   );
