@@ -1,8 +1,5 @@
 import ListAllEpisodes from "./components/ListAllEpisodes";
-import episodes from "./tvShowsData.json";
-
-console.log(`Imported ${episodes.length} episode(s)`);
-console.log(`First episode's name is ${episodes[0].name}`);
+import shows from "./showsData.json";
 
 function App(): JSX.Element {
   return (

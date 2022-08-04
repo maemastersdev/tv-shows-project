@@ -6,21 +6,18 @@ import axios from "axios";
 import { useEffect } from "react";
 import ListAnEpisode from "./ListAnEpisode";
 import removeThePs from "../utils/removeThePs";
+import showsData from "../showsData.json";
 
 export function ListAllEpisodes(): JSX.Element {
   const [selectorPlaceholder, setSelectorPlaceholder] =
     useState("Select a show");
-  const [showID, setShowID] = useState<string>("82");
+  const [showID, setShowID] = useState<number>(82);
 
-  const arrayOfShows: IShow[] = [
-    { title: "Game of Thrones", ID: "82" },
-    { title: "The Simpsons", ID: "83" },
-  ];
 
   function handleSelectShow(showName: string) {
-    const selectedShow = arrayOfShows.find((show) => show.title === showName);
+    const selectedShow = showsData.find((show) => show.name === showName);
     if (selectedShow) {
-      setShowID(selectedShow.ID);
+      setShowID(selectedShow.id);
       console.log(showID);
     }
   }
@@ -56,8 +53,8 @@ export function ListAllEpisodes(): JSX.Element {
           placeholder={selectorPlaceholder}
           onChange={(e) => handleSelectShow(e.target.value)}
         >
-          {arrayOfShows.map((oneShow) => (
-            <option key={oneShow.ID}> {oneShow.title} </option>
+          {showsData.map((oneShow) => (
+            <option key={oneShow.id}> {oneShow.name} </option>
           ))}
         </select>
       </div>
