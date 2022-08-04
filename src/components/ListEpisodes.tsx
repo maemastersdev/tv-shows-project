@@ -39,10 +39,10 @@ export function ListAllEpisodes(): JSX.Element {
       .catch((err) => {
         console.log(err);
       });
-      // [] to prevent constant re-render (( tells useEffect to call function ONLY after FIRST render ))
-      // with no second arg, function will be called after EVERY render of the component 
-      // [showID] function will be called after first render, AND after either showID change 
-  },[showID]);
+    // [] to prevent constant re-render (( tells useEffect to call function ONLY after FIRST render ))
+    // with no second arg, function will be called after EVERY render of the component
+    // [showID] function will be called after first render, AND after either showID change
+  }, [showID]);
 
   const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
