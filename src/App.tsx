@@ -1,4 +1,4 @@
-import ListAllEpisodes from "./components/ListEpisodes";
+import ListAllEpisodes from "./components/ListAllEpisodes";
 import episodes from "./tvShowsData.json";
 
 console.log(`Imported ${episodes.length} episode(s)`);
