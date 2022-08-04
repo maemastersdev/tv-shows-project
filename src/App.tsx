@@ -5,8 +5,9 @@ function App(): JSX.Element {
   return (
     <>
       <h1> TV SHOW </h1>
-      <ListAllEpisodes />
       <ListAllShows />
+      <ListAllEpisodes />
+      
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { IShow } from "../utils/IShow";
+import { IShow2 } from "../utils/IShow";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ import { showTextInputFilter } from "./searchShows";
 export function ListAllShows(): JSX.Element {
   
   const [searchText, setSearchText] = useState("");
-  const searchedShowData: IShow[] = showsData.filter((oneShow) =>
+  const searchedShowData: IShow2[] = showsData.filter((oneShow) =>
     showTextInputFilter(oneShow, searchText)
   );
 
