@@ -1,6 +1,6 @@
-import { IShow2 } from "../utils/IShow";
+import { IShow } from "../utils/IShow";
 
-export default function ListAShow(oneShow: IShow2) {
+export default function ListAShow(oneShow: IShow) {
   return (
     <div className="showCard">
       <h1>{oneShow.name}</h1>

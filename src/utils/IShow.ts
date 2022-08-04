@@ -1,4 +1,4 @@
-export interface IShow2 {
+export interface IShow {
     id: number;
     name: string;
     image: {
