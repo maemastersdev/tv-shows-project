@@ -7,7 +7,6 @@ function App(): JSX.Element {
       <h1> TV SHOW </h1>
       <ListAllShows />
       <ListAllEpisodes />
-      
     </>
   );
 }

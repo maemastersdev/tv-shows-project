@@ -12,7 +12,6 @@ export function ListAllEpisodes(): JSX.Element {
     useState("Select a show");
   const [showID, setShowID] = useState<number>(82);
 
-
   function handleSelectShow(showName: string) {
     const selectedShow = showsData.find((show) => show.name === showName);
     if (selectedShow) {

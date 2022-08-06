@@ -7,8 +7,6 @@ import showsData from "../showsData.json";
 import { showTextInputFilter } from "./searchShows";
 
 export function ListAllShows(): JSX.Element {
-  
-
   const [searchText, setSearchText] = useState("");
   const searchedShowData: IShow[] = showsData.filter((oneShow) =>
     showTextInputFilter(oneShow, searchText)
@@ -30,4 +28,3 @@ export function ListAllShows(): JSX.Element {
     </>
   );
 }
-

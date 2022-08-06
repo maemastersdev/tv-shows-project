@@ -30,9 +30,9 @@ export interface IShow {
   id: number;
   name: string;
   image: {
-      medium: string;
-      original: string;
-  },
+    medium: string;
+    original: string;
+  };
   summary: string;
   genres: string[];
   status: string;
@@ -42,5 +42,5 @@ export interface IShow {
 
 export interface ISearchText {
   text: string;
-  setText: React.Dispatch<React.SetStateAction<string>>
+  setText: React.Dispatch<React.SetStateAction<string>>;
 }
