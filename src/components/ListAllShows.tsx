@@ -21,9 +21,6 @@ export function ListAllShows({
     }
   }
 
-  function handleRandomShow() {
-    setShowID
-  }
 
   const searchedShowData: IShow[] = showsData.filter((oneShow) =>
     showTextInputFilter(oneShow, text)
@@ -50,7 +47,7 @@ export function ListAllShows({
         }}
         placeholder="Search Shows"
       />
-      <button onClick={handleRandomShow}>Random Show</button>
+
       <p>
         {" "}
         Showing {ListedAllShows.length} of {showsData.length} shows{" "}
