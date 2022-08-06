@@ -1,4 +1,5 @@
-import { IShow } from "../utils/IShow";
+import { IShow } from "../utils/Interfaces";
+
 
 export default function ListAShow(oneShow: IShow) {
   return (

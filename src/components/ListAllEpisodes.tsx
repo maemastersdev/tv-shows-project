@@ -1,5 +1,4 @@
-import { IEpisode } from "../utils/IEpisode";
-import { IShow } from "../utils/IShow";
+import { IEpisode, IShow } from "../utils/Interfaces";
 import { textInputFilter } from "./searchEpisodes";
 import { useState } from "react";
 import axios from "axios";

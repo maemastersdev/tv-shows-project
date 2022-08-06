@@ -1,4 +1,4 @@
-import { IEpisode } from "../utils/IEpisode";
+import { IEpisode } from "../utils/Interfaces";
 
 export function createEpisodeCode(oneEpisode: IEpisode) {
   const seasonCode = oneEpisode.season.toString().padStart(2, "0");

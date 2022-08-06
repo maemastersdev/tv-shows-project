@@ -1,5 +1,5 @@
 import removeThePs from "../utils/removeThePs";
-import { IEpisode } from "../utils/IEpisode";
+import { IEpisode } from "../utils/Interfaces";
 import { createEpisodeCode } from "./createEpisodeCode";
 
 export default function ListAnEpisode(oneEpisode: IEpisode) {
