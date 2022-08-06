@@ -23,7 +23,7 @@ export interface IEpisode {
 export interface ISelectShows {
   setShowID: React.Dispatch<React.SetStateAction<number | null>>;
   showID: number | null;
-  shows: IShow[];
+  oneShow?: IShow[];
 }
 
 export interface IShow {

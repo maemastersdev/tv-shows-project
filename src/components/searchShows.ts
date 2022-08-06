@@ -1,6 +1,6 @@
-import { IShow2 } from "../utils/IShow";
+import { IShow } from "../utils/Interfaces";
 
-export function showTextInputFilter(oneShow: IShow2, text: string): boolean {
+export function showTextInputFilter(oneShow: IShow, text: string): boolean {
   const searchShowName: string = oneShow.name;
   const searchShowSummary: string = oneShow.summary ?? "";
   if (

@@ -7,7 +7,9 @@ export default function ListAnEpisode(oneEpisode: IEpisode): JSX.Element {
     <div className="episodeCard">
       <h1>{oneEpisode.name}</h1>
       <h2>{createEpisodeCode(oneEpisode)}</h2>
-      {oneEpisode.image !== null && <img src={oneEpisode.image.medium} alt = "from Episode"/>}
+      {oneEpisode.image !== null && (
+        <img src={oneEpisode.image.medium} alt="from Episode" />
+      )}
       <p>{removeThePs(oneEpisode)}</p>
     </div>
   );
