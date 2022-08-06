@@ -1,15 +1,13 @@
-import { IEpisode, IShow } from "../utils/Interfaces";
+import { IEpisode } from "../utils/Interfaces";
 import { textInputFilter } from "./searchEpisodes";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import ListAnEpisode from "./ListAnEpisode";
-import removeThePs from "../utils/removeThePs";
 import showsData from "../showsData.json";
 
 export function ListAllEpisodes(): JSX.Element {
-  const [selectorPlaceholder, setSelectorPlaceholder] =
-    useState("Select a show");
+
   const [showID, setShowID] = useState<number>(82);
 
   function handleSelectShow(showName: string) {
@@ -48,7 +46,6 @@ export function ListAllEpisodes(): JSX.Element {
       <div>
         <p>selected show id is: {showID}</p>
         <select
-          placeholder={selectorPlaceholder}
           onChange={(e) => handleSelectShow(e.target.value)}
         >
           {showsData.map((oneShow) => (

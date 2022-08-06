@@ -1,7 +1,5 @@
 import { IShow } from "../utils/Interfaces";
 import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
 import ListAShow from "./ListAShow";
 import showsData from "../showsData.json";
 import { showTextInputFilter } from "./searchShows";

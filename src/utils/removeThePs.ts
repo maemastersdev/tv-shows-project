@@ -1,6 +1,6 @@
-import { IEpisode } from "./IEpisode";
+import { IEpisode } from "./Interfaces";
 
-export default function removeThePs(oneEpisode: IEpisode) {
+export default function removeThePs(oneEpisode: IEpisode): string | null {
   if (oneEpisode.summary != null) {
     oneEpisode.summary = oneEpisode.summary.replace("<p>", "");
     oneEpisode.summary = oneEpisode.summary.replace("</p>", "");

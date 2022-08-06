@@ -1,6 +1,6 @@
 import { IShow } from "../utils/Interfaces";
 
-export default function ListAShow(oneShow: IShow) {
+export default function ListAShow(oneShow: IShow): JSX.Element {
   return (
     <div className="showCard">
       <h1>{oneShow.name}</h1>
@@ -8,7 +8,7 @@ export default function ListAShow(oneShow: IShow) {
         {oneShow.genres}, {oneShow.status}, {oneShow.rating.average},{" "}
         {oneShow.runtime}
       </h2>
-      {oneShow.image.medium !== undefined && <img src={oneShow.image.medium} />}
+      {oneShow.image.medium !== undefined && <img src={oneShow.image.medium} alt= "from show." />}
       <p>{oneShow.summary}</p>
     </div>
   );
