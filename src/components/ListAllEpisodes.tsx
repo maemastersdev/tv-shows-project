@@ -1,27 +1,19 @@
-import { IEpisode } from "../utils/IEpisode";
-import { IShow } from "../utils/IShow";
+import { IEpisode, ISelectShows, ISearchText } from "../utils/Interfaces";
 import { textInputFilter } from "./searchEpisodes";
 import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import ListAnEpisode from "./ListAnEpisode";
-import removeThePs from "../utils/removeThePs";
-import showsData from "../showsData.json";
 
-export function ListAllEpisodes(): JSX.Element {
-  const [selectorPlaceholder, setSelectorPlaceholder] =
-    useState("Select a show");
-  const [showID, setShowID] = useState<number>(82);
+interface IListOfEpisodes {
+  ISelectShows: ISelectShows;
+  ISearchText: ISearchText;
+}
 
-
-  function handleSelectShow(showName: string) {
-    const selectedShow = showsData.find((show) => show.name === showName);
-    if (selectedShow) {
-      setShowID(selectedShow.id);
-      console.log(showID);
-    }
-  }
-
+export function ListAllEpisodes({
+  ISelectShows: { showID, setShowID },
+  ISearchText: { text, setText },
+}: IListOfEpisodes): JSX.Element {
   const [episodes, setEpisodes] = useState<IEpisode[]>([]);
 
   useEffect(() => {
@@ -38,26 +30,19 @@ export function ListAllEpisodes(): JSX.Element {
     // [showID] function will be called after first render, AND after either showID change
   }, [showID]);
 
-  const [text, setText] = useState("");
   const searchedEpisodeData: IEpisode[] = episodes.filter((oneEpisode) =>
     textInputFilter(oneEpisode, text)
   );
 
   const ListedAllEpisodes = searchedEpisodeData.map(ListAnEpisode);
 
+  function handleBackToShows() {
+    setShowID(null);
+  }
+
   return (
     <>
-      <div>
-        <p>selected show id is: {showID}</p>
-        <select
-          placeholder={selectorPlaceholder}
-          onChange={(e) => handleSelectShow(e.target.value)}
-        >
-          {showsData.map((oneShow) => (
-            <option key={oneShow.id}> {oneShow.name} </option>
-          ))}
-        </select>
-      </div>
+      <h1 onClick={handleBackToShows}> TV SHOWS APP</h1>
       <hr></hr>
       <input
         className="searchBar"
@@ -65,8 +50,14 @@ export function ListAllEpisodes(): JSX.Element {
         onChange={(event) => {
           setText(event.target.value);
         }}
+        placeholder="Search Episodes"
       />
 
+      <button onClick={handleBackToShows}>Back to shows!</button>
+      <p>
+        {" "}
+        Showing {ListedAllEpisodes.length} of {ListedAllEpisodes.length} shows{" "}
+      </p>
       {ListedAllEpisodes}
     </>
   );

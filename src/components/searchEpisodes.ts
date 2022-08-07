@@ -1,4 +1,4 @@
-import { IEpisode } from "../utils/IEpisode";
+import { IEpisode } from "../utils/Interfaces";
 
 export function textInputFilter(oneEpisode: IEpisode, text: string): boolean {
   const searchEpisodeName: string = oneEpisode.name;
